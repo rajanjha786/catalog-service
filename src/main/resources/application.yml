@@ -10,7 +10,7 @@ server:
 polar:
   greeting: Welcome to the local book catalog
   testdata:
-    enabled: true
+    enabled: false
 
 spring:
   application:

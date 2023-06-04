@@ -20,14 +20,14 @@ class BookValidationTest {
 
     @Test
     void whenAllFieldsCorrectThenValidationSuccessful() {
-        var book = new Book("1234567890", "Title", "Author", 9.90);
+        var book = Book.of("1234567890", "Title", "Author", 9.90, null);
         var violations = validator.validate(book);
         assertThat(violations).isEmpty();
     }
 
     @Test
     void whenIsbnDefinedButIncorrectThenValidationFails() {
-        var book = new Book("a234567890", "Title", "Author", 9.90);
+        var book = Book.of("a234567890", "Title", "Author", 9.90, null);
         var violations = validator.validate(book);
         assertThat(violations.iterator().next().getMessage()).isEqualTo("The ISBN format must be valid");
     }

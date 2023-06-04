@@ -4,8 +4,14 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.*;
+
+import java.time.Instant;
 
 public record Book(
+
+        @Id
+        Long id,
         @NotBlank(
                 message = "The book ISBN must be defined"
         )
@@ -26,5 +32,20 @@ public record Book(
         @Positive(
                 message = "The book price must be greater than zero"
         )
-        Double price
-) {}
+        Double price,
+
+        String publisher,
+
+        @Version
+        int version,
+
+        @CreatedDate
+        Instant createdDate,
+
+        @LastModifiedDate
+        Instant lastModifiedDate
+) {
+        public static Book of(String isbn, String title, String author, Double price, String publisher) {
+                return new Book(null, isbn, title, author, price, publisher, 0, null, null);
+        }
+}

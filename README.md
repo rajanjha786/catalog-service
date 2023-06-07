@@ -30,9 +30,9 @@ flowchart LR %% flowchart left right
     subgraph BS [Book Shop]
         
         CS["Catalog-Service
-            [Container: Spring Boot]
-
-            Provides functionality for managing the books in the catalog"]
+        [Container: Spring Boot]
+        
+        Provides functionality for managing the books in the catalog"]
     end
     
     User-- "Uses\n[REST/HTTP]" -->CS

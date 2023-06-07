@@ -40,3 +40,54 @@ flowchart LR %% flowchart left right
     class User person
     class CS focusSystem
 ```
+
+## Catalog Service Container Level Diagram
+
+```mermaid
+---
+title: "Catalog-Service C4 Model: Container Level Diagram" 
+---
+
+flowchart LR
+
+    User["User
+    [Person]
+
+A user of the Book Shop Application"]
+
+subgraph BS [Book Shop]
+
+CS["Catalog-Service
+[Container: Spring Boot]
+
+Provides functionality for managing the books in the catalog"]
+
+CnS["Config-Service
+[Container: Spring Boot]
+
+Provides centralized Configuration"] 
+
+CnRepo[("Config Repo
+[Container: Git
+
+Stores Configuration Data]
+")]
+
+CD[("Catalog Database
+[Container: PostgreSQL]
+
+Stores book data")]
+end
+
+User-- "Uses\n[REST/HTTP]" -->CS
+CS-- "Gets configuration from\n[REST/HTTP]" -->CnS
+CnS-- "Reads config data from\n[REST/HTTP]" -->CnRepo
+CS-- "Reads from and writes to\n[JDBC]" -->CD
+
+classDef focusSystem fill:#1168bd,stroke:#0b4884,color:#ffffff
+classDef person fill:#08427b,stroke:#052e56,color:#ffffff
+class User person
+class CS,CD focusSystem
+
+
+```

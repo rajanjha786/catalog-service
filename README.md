@@ -27,22 +27,16 @@ flowchart LR %% flowchart left right
     [Person]
     
     A user of the Book Shop Application"]
-    
-    CS["Catalog-Service
-    [Container: Spring Boot]
-    
-    Provides functionality for managing the books in the catalog"]
+    subgraph BS [Book Shop]
+        
+        CS["Catalog-Service
+            [Container: Spring Boot]
+
+            Provides functionality for managing the books in the catalog"]
+    end
     
     User-- "Uses\n[REST/HTTP]" -->CS
-```
 
-```mermaid
-C4Context
-    Person(User, "User", "A user of the Book Shop Application")
-    
-    Enterprise_Boundary(b0, "Book Shop") {
-        System(CS, "Catalog-Service", "Provides functionality for managing the books in the catalog")
-    }
-    
-    Rel(User, CS, "Uses\n[REST\HTTP]")
+    class User person
+    class CS focusSystem
 ```

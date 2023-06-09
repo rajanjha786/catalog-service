@@ -1,10 +1,12 @@
 package com.polarbookshop.catalogservice.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -26,7 +28,9 @@ public class BookService {
     }
 
     public void removeBookFromCatalog(String isbn) {
+        log.info("Deleting book with {}", isbn);
         bookRepository.deleteByIsbn(isbn);
+        log.info("Deleted book with {}", isbn);
     }
 
     public Book editBookDetails(String isbn, Book book) {

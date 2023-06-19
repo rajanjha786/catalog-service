@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: catalog-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "8000"
     spec:
       containers:
         - name: catalog-service
@@ -21,7 +25,7 @@ spec:
           lifecycle:
             preStop:
               exec:
-                # Send the SIGTERM signal to pod after 5 seconds of informing all the components to not send the request to this pod
+                # Send the SIGTERM signal to pod after 5 seconds after informing all the components to not send the request to this pod
                 command: ["sh", "-c", "sleep 5"]
           ports:
             - containerPort: 8000
@@ -30,3 +34,19 @@ spec:
               value: "50"
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://catalog-postgres/bookshop_catalog
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-service
+            - name: POLAR_TESTDATA_ENABLED
+              value: "true"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 15

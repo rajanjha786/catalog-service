@@ -34,7 +34,7 @@ spring:
   datasource:
     username: user
     password: password
-    url: jdbc:postgresql://localhost:5432/bookshopdb_catalog
+    url: jdbc:postgresql://localhost:5432/bookshop_catalog
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
@@ -42,4 +42,18 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: health, prometheus
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"

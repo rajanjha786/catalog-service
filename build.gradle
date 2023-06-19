@@ -21,6 +21,7 @@ repositories {
 ext {
 	set('springCloudVersion', "2022.0.3")
 	set('testcontainersVersion', "1.17.3")
+	set('otelVersion', "1.19.2")
 }
 
 dependencies {
@@ -33,6 +34,8 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 
 	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	runtimeOnly "io.opentelemetry.javaagent:opentelemetry-javaagent:${otelVersion}"
 
 	compileOnly 'org.projectlombok:lombok'
 
@@ -70,4 +73,8 @@ bootBuildImage {
 			url = project.findProperty("registryUrl")
 		}
 	}
+}
+
+springBoot {
+	buildInfo()
 }

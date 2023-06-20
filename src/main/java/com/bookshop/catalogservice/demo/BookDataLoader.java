@@ -1,7 +1,7 @@
-package com.polarbookshop.catalogservice.demo;
+package com.bookshop.catalogservice.demo;
 
-import com.polarbookshop.catalogservice.domain.Book;
-import com.polarbookshop.catalogservice.domain.BookRepository;
+import com.bookshop.catalogservice.domain.Book;
+import com.bookshop.catalogservice.domain.BookRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@ConditionalOnProperty(name = "polar.testdata.enabled", havingValue = "true")
+@ConditionalOnProperty(name = "bookshop.testdata.enabled", havingValue = "true")
 @AllArgsConstructor
 @Slf4j
 public class BookDataLoader {

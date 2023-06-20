@@ -8,7 +8,7 @@ server:
       max: 50
       min-spare: 5
 
-polar:
+bookshop:
   greeting: Welcome to the local book catalog
   testdata:
     enabled: false
@@ -19,9 +19,10 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
   config:
-    import: "optional:configserver:"
+    import: ""
   cloud:
     config:
+     enabled: false
      uri: http://localhost:8888
      request-connect-timeout: 5000
      request-read-timeout: 5000

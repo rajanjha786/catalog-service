@@ -1,6 +1,6 @@
-package com.polarbookshop.catalogservice.web;
+package com.bookshop.catalogservice.web;
 
-import com.polarbookshop.catalogservice.config.PolarProperties;
+import com.bookshop.catalogservice.config.BookshopProperties;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class HomeController {
 
-    private final PolarProperties polarProperties;
+    private final BookshopProperties bookshopProperties;
 
     @GetMapping("/")
     public String greeting() {
-        return polarProperties.getGreeting();
+        return bookshopProperties.getGreeting();
     }
 }

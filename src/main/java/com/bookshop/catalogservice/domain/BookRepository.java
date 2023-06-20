@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice.domain;
+package com.bookshop.catalogservice.domain;
 
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;

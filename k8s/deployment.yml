@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: catalog-service
-          image: ghcr.io/rajanjha786/catalog-service
+          image: catalog-service
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -32,12 +32,11 @@ spec:
           env:
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://catalog-postgres/bookshop_catalog
-            - name: SPRING_CLOUD_CONFIG_URI
-              value: http://config-service
-            - name: POLAR_TESTDATA_ENABLED
-              value: "true"
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+          volumeMounts:
+            - name: catalog-config-volume
+              mountPath: /workspace/config
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
@@ -50,3 +49,7 @@ spec:
               port: 8000
             initialDelaySeconds: 5
             periodSeconds: 15
+      volumes:
+        - name: catalog-config-volume
+          configMap:
+            name: catalog-config

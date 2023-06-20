@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice.domain;
+package com.bookshop.catalogservice.domain;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

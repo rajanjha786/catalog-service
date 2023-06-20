@@ -1,0 +1,7 @@
+bookshop:
+  greeting: Welcome to the book catalog from Kubernetes!
+  testdata:
+    enabled: true
+spring:
+  datasource:
+    url: jdbc:postgresql://bookshop-postgres/bookshop_catalog

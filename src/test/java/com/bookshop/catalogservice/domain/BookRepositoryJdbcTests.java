@@ -1,6 +1,6 @@
-package com.polarbookshop.catalogservice.domain;
+package com.bookshop.catalogservice.domain;
 
-import com.polarbookshop.catalogservice.config.DataConfig;
+import com.bookshop.catalogservice.config.DataConfig;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

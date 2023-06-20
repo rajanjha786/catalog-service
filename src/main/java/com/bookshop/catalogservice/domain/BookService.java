@@ -1,4 +1,4 @@
-package com.polarbookshop.catalogservice.domain;
+package com.bookshop.catalogservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

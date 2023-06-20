@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: rajanjha786/catalog-service
-  VERSION: latest
+  VERSION: ${{ github.sha }}
 
 jobs:
   build:
@@ -89,3 +89,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Container Image
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+      - name: Publish Container Image (latest)
+        run: |
+          docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
+                      ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+                    docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
